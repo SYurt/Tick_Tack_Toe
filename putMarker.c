@@ -1,4 +1,4 @@
-#include <stdio.h>
+
 //put marker if the cell is free
 int putMarker (char board[], char marker, int m) {
 
