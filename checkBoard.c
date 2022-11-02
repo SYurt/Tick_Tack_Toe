@@ -1,44 +1,67 @@
-#include <stdio.h>
 
-int checkBoard(char board[],char marker) {      	       
-	int i,res;
+// this function will check the winnings ( return : 1- win, 0 - no win)
+
+int checkBoard(char board[],char marker,int cell) {      	       	
+// cell
 //   0   1   2
 //   3   4   5
 //   6   7   8
-	if (marker=='X'){
-		res=1;
-	}else{
-		res=-1;
-	}
-	for (i=0; i<=8; i++) {
-        if (board[i]==marker && board[i+1]==marker && board[i+2]==marker ) {   
-			return res;
-		} 
-		i+2;
-	}
 
-	for (i=6; i<8; i++) {
-      	if (board[i]==marker && board[i-3]==marker && board[i-6]==marker ) {    
-				return res;
+//  cell 0  1 2  3 4 5   6 7 8 
+// rowN  0  0 0  1 1 1   2 2 2
+// colN  0  1 2  0 1 2   0 1 2
+
+// for cheking line 
+// i =   0  0 0  3 3 3   2 2 2
+
+	int rowN = cell/N;
+	int colN = cell%N;
+	int countMarker = 0;
+	int i = rowN*N;
+	int k;
+	for (k=0; k<N; k++){
+		if (board[i+k]==marker){
+			countMarker+1;
 		}
 	}
+	if  (countMarker == N){
+		return 1;
+	}
+//for cheking colum 
+	int stop =N*N;         //9
+	countMarker = 0;
+	for (k=0;k<stop; k+=N ){
+		if (board[colN+k]==marker){
+			countMarker++;
+		}		
+	}
+	if (countMarker==N){
+		return 1;
+	}
+//for cheking diagonals
+	if (rowN==colN ){
+		countMarker =0 ;
+		int stop = N*N;
+		for (i=0;i<stop;i+=(N+1)){
+			if (board[i]==marker){
+				countMarker++;
+			}
+		}
+		if (countMarker==N){
+			return 1;
+		}
+		stop = N*N-N;
+		for (i=(N-1);i<stop;i+=(N-1)){
+			if (board[i]==marker){
+				countMarker++;
+			}
+		}
+		if (countMarker==N){
+			return 1;
+		}
+		
+	}
 
-	if (board[0]==marker && board[4]==marker && board[8]==marker ){
-		return res; 
-	}
-   	if (board[6]==marker && board[4]==marker && board[2]==marker ){
-		return res;
-	}
 	
-	int count=0;
-	for (i=0; i<=8; i++) {
-        if (board[i] != 0 ) {   
-		    count ++;	
-		} 
-	}
-	if (count ==9)	{
-		return 0; 
-	}
-	
-	return 2;
+	return 0;
 }
