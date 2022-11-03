@@ -22,7 +22,7 @@
         {
             "name": "Mac",
             "includePath": [
-                "<path_to_raylib>/src/**",
+                "/usr/local/include/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [
