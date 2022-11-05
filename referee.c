@@ -4,44 +4,48 @@
 #include <stdlib.h>
 #include "referee.h"
 
-//#define N 3
-const char markerX = 'X';
-const char marker0 ='0';
-const char markerEmpty = ' ';
+//#define N 3 //in common file
 
+//#define WIN_PLAYER1 1 //in common file
+//#define WIN_PLAYER2 -1 //in common file
+//#define DRAW 0 //in common file
+//#define BREAK 2 //in common file
 
-int referee(int (*playerX)(char marker, char* board_copy), int (*player0)(char marker, char* board_copy) ){
+//const char markerX = 'X'; //in common file
+//const char marker0 ='0'; //in common file
+//const char markerEmpty = ' '; //in common file
+
+int referee(int algorithmIndex1, int algorithmIndex2 ){
+
     int movesCounter = 0;
     char marker;  //who is playing now: x or 0
     char board[N*N];
     char board_copy[N*N];
     int coord;  //coordinate of moving
+    int algorithmIndex;
 
     initializeBoard(board);
-    int (*player)(char, char*);
 
     showBoard(board);
     while ( movesCounter < N*N ){
-        //showBoard(board);
-        if ((movesCounter%2) == 0){
+        if ( !(movesCounter%2) ){
             marker = markerX;
+            algorithmIndex = algorithmIndex1;
         }
-        else
+        else{
             marker = marker0;
+            algorithmIndex = algorithmIndex2;
+        }
 
         whoMoves(marker);
         copyBoard(board, board_copy);
         Sleep(100);
-        if (marker == markerX){
-            player = playerX;
-        }
-        else
-           player = player0;
+
         int countboner = 0;   //count faulty moves
         int put;  // result of putMarker (0 - marker put on board, -1 - wrong move)
         int attempt = 2; //how much player can do faulty moves
         do {
-            coord = player(marker, board_copy);
+            coord = getMove(algorithmIndex, board_copy, marker);
             put = putMarker(board, marker, coord);
             if ( put == -1 ){
                 ++countboner;
@@ -49,53 +53,38 @@ int referee(int (*playerX)(char marker, char* board_copy), int (*player0)(char m
             }
         } while ( (put == -1) && (countboner < attempt) );
         if ( put == -1 ){
-            return 2;                                       //error
+            return BREAK;                                       //error
         }
         showBoard(board);
         if (movesCounter > 2*N-3){
-            if ( checkBoard(board, marker) ){
+            if ( checkBoard(board, marker, coord) ){
                 if ( marker == markerX){
-                    return 1;
+                    return WIN_PLAYER1;
                 }
-                return -1;
+                return WIN_PLAYER2;
             }
         }
         ++movesCounter;
     }
-    return 0;   //draw
+    return DRAW;
 }
 
+
 // (for test)
-int playerX(char marker, char* copyboard){
+/*int algorithm1(char marker, char* copyboard){
     int moving;
-    printf("Make your move: ");
+    printf("Make your move: \n");
     scanf("%d", &moving);
     return moving;
 }
-// (for test)
-int player0(char marker, char* copyboard){
-   int moving; //= 0;
-    do{
-        srand(time(NULL));
-        moving = rand()%9;
-        if ( copyboard[moving] == ' ' ){
-            return moving;
-        }
-    }while(1);
-    /*for (int i = 0 ; i < N*N; ++i)
-        if (copyboard[i] == markerEmpty){
-            return i;
-    }
-    return moving;  */
-}
-
+*/
 void whoMoves(char marker){
     printf("\n%c moves\n", marker);
 }
 
 void initializeBoard(char* board){
     for (int i = 0; i < N*N; ++i ){
-        board[i] = markerEmpty ;                         //markerEmpty
+        board[i] = markerEmpty ;
     }
 }
 
@@ -105,56 +94,52 @@ void copyBoard(char* board, char* copyboard){
     }
 }
 // (for test)
-int checkBoard(char* board, char marker){   //check win
+int checkBoard(char* board, char marker, int cell){   //check win
     int count;
     for ( int i = 0; i < N; ++i){    //horizontal
         count = 0;
         for ( int j = 0; j < N; ++j){
-            if( board[N*i + j] == marker) {
-                ++count;
-                if ( count == N ){
+            if( board[N*i + j] != marker) {
+                break;
+            }
+            ++count;
+            if ( count == N ){
                     return 1;
                 }
             }
-            else
-                break;
-        }
     }
     for ( int i = 0; i < N; ++i){   //vertical
         count = 0;
         for ( int j = 0; j < N; ++j ){
-            if( board[i + N*j] == marker ){
-                ++count;
-                if ( count == N ){
-                    return 1;
+            if( board[i + N*j] != marker ){
+                break;
+            }
+            ++count;
+            if ( count == N ){
+                return 1;
                 }
             }
-            else
-                break;
-        }
     }
     count = 0;
     for ( int i = 0; i < N*N ; i = i + N + 1){    //main diagonal
-        if( board[i] == marker ){
-            ++count;
-            if ( count == N ){
-                return 1;
-            }
+        if( board[i] != marker ){
+                break;
         }
-        else
-            break;
+        ++count;
+        if ( count == N ){
+            return 1;
         }
+    }
     count = 0;
     for ( int i = N-1, j = 0;   j < N  ; ++j, i = i + N - 1){    //diagonal
-        if( board[i] == marker ){
-            ++count;
-            if ( count == N ){
-                return 1;
-            }
-        }
-        else
+        if( board[i] != marker ){
             break;
         }
+        ++count;
+        if ( count == N ){
+           return 1;
+        }
+    }
 
     return 0;
 }
@@ -178,3 +163,13 @@ void showBoard(char* board){     //It is for testing only. Substitute other func
     }
     puts("");
 }
+
+// (for test)
+/*int getMove( int algorithmIndex, char* copyboard, char marker ){
+    switch ( algorithmIndex ){
+        case 1: return algorithm1(marker, copyboard);
+        case 2: return algorithm2(marker, copyboard);
+        default: return algorithm1(marker, copyboard);
+    }
+}
+*/
