@@ -2,21 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define N 3
+#include "common.h"
+#include "algorithm1.h"
 
-const char markerX = 'X';
-const char marker0 = '0';
-const char markerEmpty = ' ';
-char board[N*N];
-
-int algorithm(char* copyboard, char marker);
-int checkCellRow(char* board, char marker, int row);
-int checkCellColumn(char* board, char marker, int column);
-int checkCellDiagonal(char* board, char marker, int diagonal);
-int randomCell(char* board);
-
-
-int algorithm(char* copyboard, char marker){
+int algorithm1(char* copyboard, char marker){
     static int movescounter = 0;
     int cell;
   // for the first move
