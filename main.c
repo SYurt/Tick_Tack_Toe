@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "mainMenu.h"
+#include "src/mainMenu.h"
 #include "raylib.h"
 
 
@@ -23,6 +23,8 @@ static void UpdateDrawFrame(void);          // Update and draw one frame
 //----------------------------------------------------------------------------------
 int main() 
 {
+    mainMenu();
+
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
@@ -57,7 +59,6 @@ int main()
     //--------------------------------------------------------------------------------------
     CloseWindow();                  // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
-    mainMenu();
 
     return 0;
 }
