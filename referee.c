@@ -1,19 +1,8 @@
 #include <stdio.h>
-#include <time.h>
 #include <Windows.h>
-#include <stdlib.h>
 #include "referee.h"
+#include "common.h"
 
-//#define N 3 //in common file
-
-//#define WIN_PLAYER1 1 //in common file
-//#define WIN_PLAYER2 -1 //in common file
-//#define DRAW 0 //in common file
-//#define BREAK 2 //in common file
-
-//const char markerX = 'X'; //in common file
-//const char marker0 ='0'; //in common file
-//const char markerEmpty = ' '; //in common file
 
 int referee(int algorithmIndex1, int algorithmIndex2 ){
 
@@ -69,15 +58,6 @@ int referee(int algorithmIndex1, int algorithmIndex2 ){
     return DRAW;
 }
 
-
-// (for test)
-/*int algorithm1(char marker, char* copyboard){
-    int moving;
-    printf("Make your move: \n");
-    scanf("%d", &moving);
-    return moving;
-}
-*/
 void whoMoves(char marker){
     printf("\n%c moves\n", marker);
 }
@@ -94,7 +74,7 @@ void copyBoard(char* board, char* copyboard){
     }
 }
 // (for test)
-int checkBoard(char* board, char marker, int cell){   //check win
+/*int checkBoard(char* board, char marker, int cell){   //check win
     int count;
     for ( int i = 0; i < N; ++i){    //horizontal
         count = 0;
@@ -151,8 +131,9 @@ int putMarker(char* board, char marker, int coord){
     }
     return -1;
 }
+*/
 // (for test)
-void showBoard(char* board){     //It is for testing only. Substitute other function
+/*void showBoard(char* board){     //It is for testing only. Substitute other function
     system("cls");
     for (int i = 0; i < N*N; ++i){
         if ( i%N == 0){
@@ -163,13 +144,6 @@ void showBoard(char* board){     //It is for testing only. Substitute other func
     }
     puts("");
 }
-
-// (for test)
-/*int getMove( int algorithmIndex, char* copyboard, char marker ){
-    switch ( algorithmIndex ){
-        case 1: return algorithm1(marker, copyboard);
-        case 2: return algorithm2(marker, copyboard);
-        default: return algorithm1(marker, copyboard);
-    }
-}
 */
+
+

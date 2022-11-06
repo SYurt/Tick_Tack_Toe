@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include "common.h"
-
-//#define N 3 //in common file
-
-//const char markerX = 'X'; //in common file
-//const char marker0 ='0'; //in common file
-//const char markerEmpty = ' '; //in common file
+#include "algorithm2.h"
 
 
-int algorithm_tar(char marker, char* board){
+int algorithm2(char marker, char* copyboard){
     int startcoordinate = (N/2)+N*(N/2);  //to start from board's center
     if ( board[startcoordinate] == markerEmpty ){
         return startcoordinate;
@@ -120,3 +115,4 @@ int algorithm_tar(char marker, char* board){
     }
     return coordinate;
 }
+
