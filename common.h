@@ -10,7 +10,7 @@
 const char markerX = 'X';
 const char marker0 = '0';
 const char markerEmpty = ' ';
-int board[N*N];
+char board[N*N];
 
 #endif // COMMON_H
 
