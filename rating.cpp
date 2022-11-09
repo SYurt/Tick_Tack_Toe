@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
-int main(int newGameRes){
-	newGameRes=0;
+int rating(int newGameRes){
 	int textArr[1];
     if (newGameRes==1){
 		char * ratingfile = "rating_player1.txt";
@@ -53,5 +52,4 @@ int main(int newGameRes){
     	fprintf(fp, "%d", textArr[0]);
     	fclose(fp);
 	}
-return 0;
 }
