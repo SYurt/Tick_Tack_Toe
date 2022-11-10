@@ -13,7 +13,7 @@
 // const char markerEmpty = ' ';
 // char board[N*N];
 
-
+#define ALGORITHMS_NUMBER 3
 int algorithm0(char* copyboard, char marker);
 int algorithm1(char* copyboard, char marker);
 int algorithm2(char* copyboard, char marker);
