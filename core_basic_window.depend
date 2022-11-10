@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1667460667 source:c:\users\windows\desktop\learning\project_tick_tack_toe\tick_tack_toe\main.c
+	"raylib.h"
+	<emscripten/emscripten.h>
+
