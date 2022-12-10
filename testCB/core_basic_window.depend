@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1667460667 source:c:\users\windows\desktop\learning\project_tick_tack_toe\tick_tack_toe\main.c
+	"raylib.h"
+	<emscripten/emscripten.h>
+
+1667839842 source:c:\users\windows\desktop\testcb\main.c
+	<stdio.h>
+	"src/mainMenu.h"
+	"raylib.h"
+	<emscripten/emscripten.h>
+
+1667839842 c:\users\windows\desktop\testcb\src\mainmenu.h
+
+1667839842 source:c:\users\windows\desktop\testcb\src\algorithm1.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"common.h"
+	"algorithm1.h"
+
+1667839842 c:\users\windows\desktop\testcb\src\common.h
+
+1667839842 c:\users\windows\desktop\testcb\src\algorithm1.h
+
+1667839842 source:c:\users\windows\desktop\testcb\src\checkboard.c
+
+1667839842 source:c:\users\windows\desktop\testcb\src\displaymenu.c
+	<stdio.h>
+	"displayMenu.h"
+
+1667839842 c:\users\windows\desktop\testcb\src\displaymenu.h
+
+1667839842 source:c:\users\windows\desktop\testcb\src\mainmenu.c
+	<stdio.h>
+	<stdlib.h>
+	"mainMenu.h"
+	"displayMenu.h"
+
+1667839842 source:c:\users\windows\desktop\testcb\src\putmarker.c
+
+1667839842 source:c:\users\windows\desktop\testcb\src\testmainmenu.c
+	<stdio.h>
+	"mainMenu.h"
+	"displayMenu.h"
+
